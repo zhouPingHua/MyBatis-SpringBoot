@@ -1,0 +1,80 @@
+spring.profiles.active: ci
+info:
+    build:
+        artifact: -@project.artifactId@
+        name: -@project.name@
+        description: -@project.description@
+        info.build.version: -@project.version@
+server:
+    port: 8080
+
+logging:
+    level:
+        tk.mybatis: TRACE
+
+spring:
+    application:
+      name: demo-aaa
+    http:
+        encoding:
+            charset: UTF-8
+            force: true
+    datasource:
+        name: datasource
+        driverClassName: oracle.jdbc.driver.OracleDriver
+        url: jdbc:oracle:thin:@//192.168.1.193:1521/lottery
+        username: credit
+        password: credit
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 1 from dual
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    redis:
+        host: 10.0.12.53
+        port: 6379
+        pool.max-idle: 200
+        pool.min-idle: 3
+        max-wait: -1
+
+
+#mybatis配置   tk.mybatis.springboot
+mybatis:
+    type-aliases-package: tk.mybatis.springboot.model
+    mapper-locations: classpath:tk/mybatis/springboot/**/*.xml
+
+mapper:
+#    mappers:
+#        - tk.mybatis.springboot.**.mapper
+    not-empty: false
+    identity: oracle
+
+pagehelper:
+    helperDialect: oracle
+    returnPageInfo: check
+    supportMethodsArguments: true
+    reasonable: true
+    params: count=countSql
+
+##zk配置
+zookeeper:
+    connect: 10.0.12.53:2181
+#    namespace: 当前项目使用zk namespace节点地址
+
+
+memcached:
+    servers:
+        - 10.0.12.53:11211
+    weights:
+        - 10
+    maxConn: 2

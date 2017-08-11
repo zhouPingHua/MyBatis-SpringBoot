@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="tk.mybatis.springboot.mapper.DemoMapper">
+    <resultMap id="Demo" type="tk.mybatis.springboot.model.Demo">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="address" column="address"/>
+    </resultMap>
+    <select id="test" parameterType="java.util.Map" resultMap="Demo">
+        SELECT *
+        FROM tb_demo t
+        WHERE t.id = #{id}
+    </select>
+</mapper>
