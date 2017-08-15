@@ -1,5 +1,6 @@
 package tk.mybatis.springboot.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -14,20 +15,23 @@ import tk.mybatis.springboot.service.DemoService;
 @Service
 public class DemoServiceImpl extends BaseService implements DemoService {
 
+    @Autowired
     private DemoMapper demoMapper;
 
-    private RedisTemplate<String, Demo> redisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     //    @Autowired
-    public DemoServiceImpl(DemoMapper demoMapper, RedisTemplate<String, Demo> redisTemplate) {
-        this.demoMapper = demoMapper;
-        this.redisTemplate = redisTemplate;
-    }
+//    public DemoServiceImpl(DemoMapper demoMapper, RedisTemplate<String, Demo> redisTemplate) {
+//        this.demoMapper = demoMapper;
+//        this.redisTemplate = redisTemplate;
+//    }
 
     @Override
     public Demo selectOne(long id) {
         logger.info("select one .......");
-        Demo result = redisTemplate.opsForValue().get("demoServiceImpl.selectOne" + id);
+        Demo result = (Demo)redisTemplate.opsForValue().get("demoServiceImpl.selectOne" + id);
+//        Demo result = null;
         if (result == null) {
             Demo demo = new Demo();
             demo.setId(id);

@@ -1,7 +1,8 @@
+tk\mybatis\springboot\controller\ZkDemoController.class
 tk\mybatis\springboot\service\impl\DemoServiceImpl.class
+tk\mybatis\springboot\Application.class
 tk\mybatis\springboot\service\BaseService.class
 tk\mybatis\springboot\mapper\DemoMapper.class
-tk\mybatis\springboot\Application.class
 tk\mybatis\springboot\model\Demo.class
 tk\mybatis\springboot\controller\BaseController.class
 tk\mybatis\springboot\controller\DemoController.class

@@ -157,6 +157,11 @@
 
         <plugins>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+            </plugin>
+
             <!--动态打包-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

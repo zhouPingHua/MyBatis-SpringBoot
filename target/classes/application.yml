@@ -1,11 +1,4 @@
 spring.profiles.active: ci
-info:
-    build:
-        artifact: -MyBatis-SpringBoot
-        name: -MyBatis-SpringBoot
-        description: -Parent pom providing dependency and plugin management for applications
-		built with Maven
-        info.build.version: -1.0-SNAPSHOT
 server:
     port: 8080
 
@@ -43,17 +36,24 @@ spring:
         maxOpenPreparedStatements: 20
     redis:
         host: 10.0.12.53
+        password: redispassword
         port: 6379
-#        host: 192.168.180.113
+        pool:
+          max-idle: 100
+          min-idle: 1
+          max-active: 1000
+          max-wait: -1
+#    redis:
+#        host: 10.0.12.53
 #        port: 6379
-        pool.max-idle: 200
-        pool.min-idle: 3
-        max-wait: -1
+#        pool.max-idle: 200
+#        pool.min-idle: 3
+#        max-wait: -1
 
 
 #mybatis配置   tk.mybatis.springboot
 mybatis:
-#    type-aliases-package: tk.mybatis.springboot.model
+    type-aliases-package: tk.mybatis.springboot.model
     mapper-locations: classpath:tk/mybatis/springboot/**/*.xml
 
 mapper:
@@ -76,14 +76,6 @@ zookeeper:
 
 
 memcached:
-    servers:
-        - 10.0.12.53:11211
-    weights:
-        - 10
+    servers: 10.0.12.53:11211
+    weights: 10
     maxConn: 2
-
-
-prometheus:
-    pushgateway:
-      host: 192.168.1.51:10141
-      intervalInMillis: 10000

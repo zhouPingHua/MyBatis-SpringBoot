@@ -1,1 +1,5 @@
+RedisTest.class
+DemoControllerTests.class
 Test.class
+DemoMapperTest.class
+RedisTemplateTest.class

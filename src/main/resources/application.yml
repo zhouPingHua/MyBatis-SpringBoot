@@ -1,10 +1,4 @@
 spring.profiles.active: ci
-info:
-    build:
-        artifact: -@project.artifactId@
-        name: -@project.name@
-        description: -@project.description@
-        info.build.version: -@project.version@
 server:
     port: 8080
 
@@ -42,10 +36,19 @@ spring:
         maxOpenPreparedStatements: 20
     redis:
         host: 10.0.12.53
+        password: redispassword
         port: 6379
-        pool.max-idle: 200
-        pool.min-idle: 3
-        max-wait: -1
+        pool:
+          max-idle: 100
+          min-idle: 1
+          max-active: 1000
+          max-wait: -1
+#    redis:
+#        host: 10.0.12.53
+#        port: 6379
+#        pool.max-idle: 200
+#        pool.min-idle: 3
+#        max-wait: -1
 
 
 #mybatis配置   tk.mybatis.springboot
@@ -73,8 +76,6 @@ zookeeper:
 
 
 memcached:
-    servers:
-        - 10.0.12.53:11211
-    weights:
-        - 10
+    servers: 10.0.12.53:11211
+    weights: 10
     maxConn: 2
